@@ -11,8 +11,16 @@
         <script src="js/factory/cannon.js"></script>
         <script src="js/factory/player.js"></script>
         <script src="js/controller/player-manager.js"></script>
-        <script src="js/init/platform.js"></script>
-        <script src="js/init/collectable.js"></script>
+        <script src="js/init/platform.js">
+        createPlatform(500, 660);          
+        createPlatform(400, 300, 0.3)       
+        createPlatform(500, 100, 0.3, 10) 
+        </script>
+        <script src="js/init/collectable.js">
+        createCollectable(type.steve, 200, 170, 6, 0.7);
+        createCollectable(type.grace, 400, 89, 7, 0.7);
+        createCollectable(type.max, 600, 100, 9, 0.7);
+        </script>
         <script src="js/init/cannon.js"></script>
         <script src="js/init/player.js"></script>
     </head>
