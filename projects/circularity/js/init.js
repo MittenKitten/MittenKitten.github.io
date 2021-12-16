@@ -21,26 +21,23 @@ var init = function (window) {
         
         // TODO 1 : Declare and initialize our variables
         var circle;
-        var circle = [];
+        var circles = [];
 
 
         // TODO 2 : Create a function that draws a circle 
         
         function drawCircle() {
             circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
-            physikz.addRandomVelocity(circle, canvas);
+            physikz.addRandomVelocity(circle, canvas, 10, 10);
             view.addChild(circle);
             circles.push(circle);
          }
 
         // TODO 3 / 8 : Call the drawCircle() function 
 
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        drawCircle();
-        
+        for (var loopsCompleted = 0; loopsCompleted < 100; loopsCompleted++) {
+            drawCircle(); 
+        }
 
 
         ////////////////////////////////////////////////////////////
@@ -54,27 +51,45 @@ var init = function (window) {
         */
         function update() {
             // TODO 4 : Update the circle's position //
-            physikz.updatePosition( circle[0] );
-            physikz.updatePosition( circle[1] );
-            physikz.updatePosition( circle[2] );
-            physikz.updatePosition( circle[3] );
-            physikz.updatePosition( circle[4] );
+           
+            //It was all D.R.Y code and the loop we made made it reducent for us to use them again.
+
+            physikz.updatePosition(  circles[0]  );
+	        physikz.updatePosition( circles[1] );
+	        physikz.updatePosition( circles[2]  );
+	        physikz.updatePosition( circles[3] );
+	        physikz.updatePosition( circles[4]);
+            
+
+
+
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
-            
-            // TODO 5 : Call game.checkCirclePosition() on your circles.
+           
+           
+            // physikz.updatePosition(eachCircle);
+            //game.checkCirclePosition(eachCircle);
+
 
             // TODO 5 : Call game.checkCirclePosition() on your circles.
 
-           game.checkCirclePosition( circle[0] );
-           game.checkCirclePosition( circle[1] );
-           game.checkCirclePosition( circle[2] );
-           game.checkCirclePosition( circle[3] );
-           game.checkCirclePosition( circle[4] );
+            //It was all D.R.Y code and the loop we made made it reducent for us to use them again.
+
+            game.checkCirclePosition( circles[0] );
+            game.checkCirclePosition( circles[1] );
+            game.checkCirclePosition( circles[2] );
+            game.checkCirclePosition( circles[3]);
+            game.checkCirclePosition( circles[4] );
+
+
 
 
             // TODO 9 : Iterate over the array
-           
+            for (var i = 0; i < circles.length; i++) {
+                var eachCircle = circles[i];
+                
+                // code to repeat using eachValue
+            }
             
         }
     
@@ -91,8 +106,19 @@ var init = function (window) {
             }
             
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            
 
+            // if the circle has gone past the LEFT side of the screen then place it on the RIGHT
+            if (circle.x < canvas.width ) {
+                circle.x = 0;
+            }
+            // if the circle has gone past the TOP side of the screen then place it on the BOTTOM
+            if (circle.y > canvas.heigth ) {
+                circle.y = 0;
+            }
+            // if the cirlce has gone past the BOTTOM side of the screen then place it on the TOP
+            if (circle.y < canvas.height ) {
+                circle.y = 0;
+            }
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
         }
